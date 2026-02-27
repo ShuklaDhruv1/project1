@@ -1,18 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{% block title %}SpaceVerse{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/space.css' %}">
 </head>
-<body>
-  <nav>
-    <a href="/">SpaceVerse</a>
-    <a href="/">Home</a>
+<body class="space-bg">
+  <nav class="nav">
+    <div class="brand"><a href="/">SpaceVerse</a></div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blogs</a>
+      <a href="/space/">Space Info</a>
+    </div>
   </nav>
 
-  <main>
+  <main class="container">
     {% block content %}{% endblock %}
   </main>
+
+  <footer class="footer">© SpaceVerse</footer>
 </body>
-</html>     
+</html>
