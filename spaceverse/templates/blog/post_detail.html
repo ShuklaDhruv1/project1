@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>{{ post.title }}</h1>
+  <p>By {{ post.author }} • {{ post.created_at|date:"d M Y" }}</p>
+  <hr style="border-color: rgba(255,255,255,0.14);">
+  <p style="white-space: pre-wrap;">{{ post.content }}</p>
+  <a class="btn" href="/blog/">Back</a>
+</div>
+{% endblock %}
