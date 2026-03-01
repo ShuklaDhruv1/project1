@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>Space Info</h1>
+  <p>Planets, stars, galaxies, Big Bang and more.</p>
+</div>
+
+{% for t in topics %}
+  <div class="card" style="margin-top:14px;">
+    <h2><a href="/space/{{ t.slug }}/">{{ t.title }}</a></h2>
+    <p><b>Type:</b> {{ t.get_topic_type_display }}</p>
+    <p>{{ t.summary }}</p>
+    <a class="btn" href="/space/{{ t.slug }}/">Open</a>
+  </div>
+{% empty %}
+  <div class="card" style="margin-top:14px;">
+    <p>No topics yet. Add from admin.</p>
+  </div>
+{% endfor %}
+{% endblock %}

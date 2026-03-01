@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('django.contrib.auth.urls')),
     path('blog/', include('blog.urls')),
+    path('space/', include('spacepedia.urls')),
 ]

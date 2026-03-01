@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>{{ topic.title }}</h1>
+  <p><b>Type:</b> {{ topic.get_topic_type_display }}</p>
+  <p>{{ topic.summary }}</p>
+  <hr style="border-color: rgba(255,255,255,0.14);">
+  <div style="white-space: pre-wrap;">{{ topic.content }}</div>
+  <a class="btn" href="/space/">Back</a>
+</div>
+{% endblock %}
