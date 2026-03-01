@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>Search</h1>
+  <form method="get" action="/search/">
+    <input name="q" value="{{ q }}" placeholder="Search planets, stars, blogs..."
+           style="width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.14); background:rgba(0,0,0,0.2); color:white;">
+    <div style="margin-top:12px;">
+      <button class="btn" type="submit">Search</button>
+    </div>
+  </form>
+</div>
+
+{% if q %}
+  <div class="card" style="margin-top:14px;">
+    <h2>Blog Results</h2>
+    {% for p in posts %}
+      <p><a href="/blog/{{p.slug}}/">{{ p.title }}</a></p>
+    {% empty %}<p>No blog matches.</p>{% endfor %}
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <h2>Space Info Results</h2>
+    {% for t in topics %}
+      <p><a href="/space/{{t.slug}}/">{{ t.title }}</a></p>
+    {% empty %}<p>No topic matches.</p>{% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
