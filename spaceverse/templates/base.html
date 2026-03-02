@@ -5,22 +5,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{% block title %}SpaceVerse{% endblock %}</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS (scroll animations) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
   <link rel="stylesheet" href="{% static 'css/space.css' %}">
+  <link rel="stylesheet" href="{% static 'css/space-pro.css' %}">
 </head>
-<body class="space-bg">
-  <nav class="nav">
-    <div class="brand"><a href="/">SpaceVerse</a></div>
+
+<body class="space-body">
+  <!-- Animated background -->
+  <canvas id="starfield"></canvas>
+  <div class="shooting shooting-1"></div>
+  <div class="shooting shooting-2"></div>
+  <div class="shooting shooting-3"></div>
+
+  <nav class="nav nav-pro">
+    <div class="brand">
+      <a class="brand-link" href="/">SpaceVerse</a>
+      <span class="brand-dot"></span>
+    </div>
+
     <div class="links">
-        <a href="/">Home</a>
-        <a href="/blog/">Blogs</a>
-        <a href="/space/">Space Info</a>
-        <a href="/search/">Search</a>
+      <a href="/">Home</a>
+      <a href="/space/">Space Info</a>
+      <a href="/blog/">Blogs</a>
+      <a href="{% url 'search' %}">Search</a>
 
       {% if user.is_authenticated %}
-        <a href="/logout/">Logout ({{ user.username }})</a>
+        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="chip" style="color: inherit;">
+               Logout ({{ user.username }})
+            </button>
+        </form>
       {% else %}
-        <a href="/login/">Login</a>
-        <a href="/signup/">Signup</a>
+        <a class="chip" href="/login/">Login</a>
+        <a class="chip chip-accent" href="/signup/">Signup</a>
       {% endif %}
     </div>
   </nav>
@@ -30,5 +56,25 @@
   </main>
 
   <footer class="footer">© SpaceVerse</footer>
+
+  <!-- Scripts -->
+  <script src="{% static 'js/stars.js' %}"></script>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, offset: 60, once: true });
+  </script>
+
+  <!-- VanillaTilt (3D tilt) -->
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+  <script>
+    VanillaTilt.init(document.querySelectorAll(".tilt"), {
+      max: 8,
+      speed: 600,
+      glare: true,
+      "max-glare": 0.18
+    });
+  </script>
 </body>
 </html>

@@ -66,3 +66,12 @@ body{
   border-top:1px solid var(--border);
   margin-top: 40px;
 }
+
+button.chip{
+  color: inherit;
+  font: inherit;
+  background: rgba(255,255,255,0.05);
+}
+button.chip{
+  border: 1px solid rgba(255,255,255,0.14);
+}
